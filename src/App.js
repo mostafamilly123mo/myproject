@@ -12,10 +12,25 @@ import { DataContainer } from './components/DataContainer';
 import NameGroup from './components/namegroup';
 import ShowMember from './components/ShowMember';
 import Filehistory from './components/Filehistory';
+import { testService } from './services/test.service';
+import { useEffect } from 'react';
 
 
 
 function App() {
+
+  useEffect(() => {
+    const getFakeData = async() => {
+      const res = await testService.testGet();
+      console.log(res?.data);
+    }
+
+    getFakeData();
+
+  },[])
+
+    
+
   return (
 
     <Fragment>
