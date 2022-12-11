@@ -7,9 +7,9 @@ import Register from './components/register.js';
 import Data from './components/data';
 import Addgroup from './components/addgroup';
 import  AddUser from './components/AddUser';
-import  DeleteGroup from './components/DeleteGroup';
+// import  DeleteGroup from './components/DeleteGroup';
 import { DataContainer } from './components/DataContainer';
-import NameGroup from './components/namegroup';
+import Grouppage from './components/grouppage';
 import ShowMember from './components/ShowMember';
 import Filehistory from './components/Filehistory';
 import { testService } from './services/test.service';
@@ -45,9 +45,9 @@ function App() {
           <Route path='addgroup' element={<Addgroup />}></Route>
           <Route path='addgroup' element={<Addgroup />}></Route>
         </Route>
-        <Route path='/namegroup' element={<NameGroup />}></Route>
+        <Route path='/grouppage' element={<Grouppage />}></Route>
         <Route path='/adduser' element={<AddUser />}></Route>
-        <Route path='/deletegroup' element={<DeleteGroup />}></Route>
+        {/* <Route path='/deletegroup' element={<DeleteGroup />}></Route> */}
         <Route path='/showmember' element={<ShowMember />}></Route>
         <Route path='/filehistory' element={<Filehistory />}></Route>
 

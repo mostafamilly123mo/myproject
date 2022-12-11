@@ -66,12 +66,10 @@ export default function FixedTags() {
    
     <div className="add-card">
 
-      <div>
-      <h2 className='title'> NameGroup</h2>
-      </div>
-
     <div className="card1">
-      
+   
+      <h2 className='title'> NameGroup</h2>
+    
     <Box sx={{ flexGrow: 1 }} className='box'>
       <AppBar position="static" className='appbar'>
         <Toolbar className='toolbar'>

@@ -1,7 +1,3 @@
-
-
-
-
 [
               {  "NameUser":"backend ",
                 "Owner": "Jill Dupre",
@@ -14,36 +10,6 @@
                 "description": "about description group"
               },
               
-              {
-                "NameUser": "database",
-                "Owner": "Jordan Whash",
-                "description": "about description group"
-              },
-              {
-                "NameUser": "database",
-                "Owner": "Jordan Whash",
-                "description": "about description group"
-              },  
-              {
-                "NameUser": "database",
-                "Owner": "Jordan Whash",
-                "description": "about description group"
-              },
-              {
-                "NameUser": "database",
-                "Owner": "Jordan Whash",
-                "description": "about description group"
-              },
-              {
-                "NameUser": "database",
-                "Owner": "Jordan Whash",
-                "description": "about description group"
-              },
-              {
-                "NameUser": "database",
-                "Owner": "Jordan Whash",
-                "description": "about description group"
-              },
               {
                 "NameUser": "database",
                 "Owner": "Jordan Whash",
