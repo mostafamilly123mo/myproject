@@ -330,12 +330,12 @@ width: 160px;
   font-family:Cursive;
 }
 .title{
- position: fixed;
- background-color:#85a9b9;
-border-style:none;
- font-size: 27px;
-  font-family:Cursive;
-  margin: -107px 160px;
+  position: absolute;
+  background-color:#85a9b9;
+ border-style:none;
+  font-size: 25px;
+   font-family:Cursive;
+   margin: -44px 160px;
 }
 
 
