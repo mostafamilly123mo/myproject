@@ -9,7 +9,7 @@ import Addgroup from './components/addgroup';
 import  AddUser from './components/AddUser';
 import  DeleteGroup from './components/DeleteGroup';
 import { DataContainer } from './components/DataContainer';
-import NameGroup from './components/namegroup';
+import Grouppage from './components/grouppage';
 import ShowMember from './components/ShowMember';
 import Filehistory from './components/Filehistory';
 
@@ -30,7 +30,7 @@ function App() {
           <Route path='addgroup' element={<Addgroup />}></Route>
           <Route path='addgroup' element={<Addgroup />}></Route>
         </Route>
-        <Route path='/namegroup' element={<NameGroup />}></Route>
+        <Route path='/grouppage' element={<Grouppage />}></Route>
         <Route path='/adduser' element={<AddUser />}></Route>
         <Route path='/deletegroup' element={<DeleteGroup />}></Route>
         <Route path='/showmember' element={<ShowMember />}></Route>

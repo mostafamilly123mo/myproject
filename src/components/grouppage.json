@@ -1,0 +1,12 @@
+[
+    {  "FileName":"mayas.txt ",
+      "States": "free",
+      "ReservedBy": "-"
+    },
+
+    {
+      "FileName": "omran.txt",
+      "States": "reserves",
+      "ReservedBy": "read"
+    }
+]
