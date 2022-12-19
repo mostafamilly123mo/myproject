@@ -8,7 +8,9 @@ export default class ApiProvider {
   constructor(config) {
     this.api = axios.create(config);
     this.api.interceptors.request.use(async (req) => {
+      console.log('before');
       const cookies = new Cookies(req.headers.cookies);
+      console.log(cookies.get(TOKEN_KEY));
         return {
           ...req,
           headers: {

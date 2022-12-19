@@ -1,12 +1,20 @@
 import React, { Fragment, useState } from 'react';
-import { nanoid } from "nanoid";
-import Makedata from './Makedata.json';
+import { useEffect } from 'react';
+import { filesService } from '../services/files.service';
 
 
 
 
 
 const Filehistory = () => {
+
+
+  const [filesHistory, setFilesHistory] = useState([]);
+
+
+  useEffect(()=>{
+    filesService.getFilesHistory()?.then(res => setFilesHistory(res?.file_history?.data || []))
+  },[])
 
   return (
 
@@ -24,7 +32,18 @@ const Filehistory = () => {
                 <th className='th'> cancel Reservation</th>
               </tr>
             </thead>
-
+            <tbody>
+              {
+                filesHistory?.map(row => <tr key={row.file_id}>
+                  <td>Hi</td>
+                  <td>Hii</td>
+                  <td>Hiii</td>
+                  <td>Hiiii</td>
+                  <td>Hiiiii</td>
+                </tr>)
+              }
+              
+            </tbody>
 
           </table>
         </form>

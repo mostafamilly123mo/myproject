@@ -14,6 +14,8 @@ import ShowMember from './components/ShowMember';
 import Filehistory from './components/Filehistory';
 import { testService } from './services/test.service';
 import { useEffect } from 'react';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 
 
@@ -52,6 +54,7 @@ function App() {
         <Route path='/filehistory' element={<Filehistory />}></Route>
 
       </Routes>
+      <ToastContainer />
     </Fragment>
 
 
