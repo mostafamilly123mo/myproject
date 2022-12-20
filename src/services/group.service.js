@@ -27,6 +27,17 @@ class GroupService extends ApiService {
       params: { user_id: userId, group_id: groupId },
     });
   }
+
+  getMemberByEmail(email) {
+    return this.post("/api/getUserInfoByEmail", { email });
+  }
+
+  addMembersToGroup(groupId, userIds) {
+    return this.post("/api/addUsersToGroup", {
+      group_id: groupId,
+      user_ids: userIds,
+    });
+  }
 }
 
 export const groupService = new GroupService();

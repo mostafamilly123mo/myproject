@@ -18,7 +18,6 @@ import { toast } from "react-toastify";
 const getMembersQuery = (groupId, search = "") => ({
   queryKey: ["Members", { groupId, search }],
   queryFn: () => groupService.getGroupMembers(groupId, search),
-  suspense: true,
 });
 
 const deleteMemberMutation = {
@@ -41,7 +40,7 @@ const ShowMember = () => {
   const [search, setSearch] = useState("");
   const { mutate: deleteMember } = useMutation(deleteMemberMutation);
   const { data } = useQuery(getMembersQuery(Number(groupId), search));
-  const members = data["$group_member"]?.data || [];
+  const members = data?.["$group_member"]?.data || [];
 
   const handleEditFormChange = (event) => {
     event.preventDefault();
@@ -99,8 +98,7 @@ const ShowMember = () => {
           client.resetQueries("Members");
           if (res.errNum !== "200") {
             toast.error(res?.msg);
-          }
-          else {
+          } else {
             toast.success(res?.msg);
           }
         },

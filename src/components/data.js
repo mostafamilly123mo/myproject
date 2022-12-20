@@ -16,10 +16,6 @@ const Data = () => {
   const groups = data.groups;
   const navigate = useNavigate();
 
-  const handleMembersNavigation = (groupId) => {
-    navigate(`${groupId}/showmember`);
-  };
-
   const openInNewTab = (url) => {
     window.open(url, "_blank", "noopener,noreferrer");
   };
@@ -45,8 +41,11 @@ const Data = () => {
                   <td>{group.user_id}</td>
                   <td>{group.description}</td>
                   <td style={{ display: "flex", columnGap: 4 }}>
-                    <Button onClick={() => handleMembersNavigation(group.id)}>
+                    <Button onClick={() => navigate(`${group.id}/showmember`)}>
                       Members
+                    </Button>
+                    <Button onClick={() => navigate(`${group.id}/adduser`)}>
+                      Add member
                     </Button>
                   </td>
                 </tr>
