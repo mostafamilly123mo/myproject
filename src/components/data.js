@@ -1,55 +1,91 @@
-import React, { useState } from 'react';
-import Makedata from './Makedata.json';
+import { useQuery } from "@tanstack/react-query";
+import React, { useState } from "react";
+import { groupService } from "../services/group.service";
+import Makedata from "./Makedata.json";
 
+const groupsQuery = {
+  queryKey: ["MyGroups"],
+  queryFn: () => groupService.getUserGroups(),
+  suspense: true,
+};
 
 const Data = () => {
-
-  const [contacts, setContacts] = useState(Makedata);
-
-
-  const openInNewTab = url => {
-    window.open(url, '_blank', 'noopener,noreferrer');
+  const { data } = useQuery(groupsQuery);
+  const groups = data.groups;
+  /**
+   * [
+    {
+        "id": 1,
+        "user_id": 1,
+        "name": "public",
+        "description": "For All Users",
+        "pivot": {
+            "user_id": 1,
+            "group_id": 1
+        }
+    },
+    {
+        "id": 2,
+        "user_id": 1,
+        "name": "BackEnd",
+        "description": "For BackEnd User",
+        "pivot": {
+            "user_id": 1,
+            "group_id": 2
+        }
+    },
+    {
+        "id": 6,
+        "user_id": 4,
+        "name": "FrontEnd",
+        "description": "For FrontEnd User",
+        "pivot": {
+            "user_id": 1,
+            "group_id": 6
+        }
+    }
+]
+   */
+  console.log(data);
+  const openInNewTab = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (
-
     <>
       <div className="container-app">
-        <h2 className='allgroups'> GROUPS</h2>
-        <form className='form-data' >
-          <table className='table'>
+        <h2 className="allgroups"> GROUPS</h2>
+        <form className="form-data">
+          <table className="table">
             <thead>
               <tr>
-                <th className='th'>NameGroup </th>
-                <th className='th'>Owner</th>
-                <th className='th'> description</th>
+                <th className="th">NameGroup </th>
+                <th className="th">Owner</th>
+                <th className="th"> description</th>
               </tr>
             </thead>
             <tbody>
-              {contacts.map((contact) => (
-                < tr>
-                 <td>{contact.NameUser}</td>
-                 <td>{contact.Owner}</td>
-                 <td>{contact.description}</td>
-                 </tr>
+              {groups.map((group) => (
+                <tr key={group.id}>
+                  <td>{group.name}</td>
+                  <td>{group.user_id}</td>
+                  <td>{group.description}</td>
+                </tr>
               ))}
-          
             </tbody>
             <div>
-              <button className=' btn-block' onClick={() => openInNewTab('./addgroup')}>
+              <button
+                className=" btn-block"
+                onClick={() => openInNewTab("./addgroup")}
+              >
                 ADD Group
               </button>
             </div>
           </table>
         </form>
-
       </div>
     </>
   );
-
-
-
-
 };
 
 export default Data;
