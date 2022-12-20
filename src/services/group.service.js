@@ -10,6 +10,10 @@ class GroupService extends ApiService {
   getUserGroups() {
     return this.get("/api/getMyGroups");
   }
+
+  addNewGroup(group) {
+    return this.post("/api/addGroup", group);
+  }
 }
 
 export const groupService = new GroupService();

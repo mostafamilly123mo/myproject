@@ -12,41 +12,7 @@ const groupsQuery = {
 const Data = () => {
   const { data } = useQuery(groupsQuery);
   const groups = data.groups;
-  /**
-   * [
-    {
-        "id": 1,
-        "user_id": 1,
-        "name": "public",
-        "description": "For All Users",
-        "pivot": {
-            "user_id": 1,
-            "group_id": 1
-        }
-    },
-    {
-        "id": 2,
-        "user_id": 1,
-        "name": "BackEnd",
-        "description": "For BackEnd User",
-        "pivot": {
-            "user_id": 1,
-            "group_id": 2
-        }
-    },
-    {
-        "id": 6,
-        "user_id": 4,
-        "name": "FrontEnd",
-        "description": "For FrontEnd User",
-        "pivot": {
-            "user_id": 1,
-            "group_id": 6
-        }
-    }
-]
-   */
-  console.log(data);
+
   const openInNewTab = (url) => {
     window.open(url, "_blank", "noopener,noreferrer");
   };
