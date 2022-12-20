@@ -1,5 +1,7 @@
+import { Button } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { groupService } from "../services/group.service";
 import Makedata from "./Makedata.json";
 
@@ -12,6 +14,11 @@ const groupsQuery = {
 const Data = () => {
   const { data } = useQuery(groupsQuery);
   const groups = data.groups;
+  const navigate = useNavigate();
+
+  const handleMembersNavigation = (groupId) => {
+    navigate(`${groupId}/showmember`);
+  };
 
   const openInNewTab = (url) => {
     window.open(url, "_blank", "noopener,noreferrer");
@@ -28,6 +35,7 @@ const Data = () => {
                 <th className="th">NameGroup </th>
                 <th className="th">Owner</th>
                 <th className="th"> description</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -36,6 +44,11 @@ const Data = () => {
                   <td>{group.name}</td>
                   <td>{group.user_id}</td>
                   <td>{group.description}</td>
+                  <td style={{ display: "flex", columnGap: 4 }}>
+                    <Button onClick={() => handleMembersNavigation(group.id)}>
+                      Members
+                    </Button>
+                  </td>
                 </tr>
               ))}
             </tbody>
