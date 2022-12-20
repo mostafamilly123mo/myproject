@@ -3,9 +3,10 @@ import Form from 'react-validation/build/form';
 import Input from "react-validation/build/input";
 import CheckButton from 'react-validation/build/button';
 import { isEmail } from "validator";
-import {  NavLink } from "react-router-dom";
+import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
-import AuthService from "../services/auth.service";
+import { authService } from "../services/auth.service";
 const required = (value) => {
     if (!value) {
       return (
@@ -74,6 +75,7 @@ const required = (value) => {
     const [c_password, setC_password] = useState("");
     const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState("");
+    const navigate = useNavigate();
   
 
 
@@ -108,26 +110,26 @@ const required = (value) => {
       setSuccessful(false);
   
       form.current.validateAll();
-  
       if (checkBtn.current.context._errors.length === 0) {
-        AuthService.register(name,username, email, password,c_password).then(
-          (response) => {
-            setMessage(response.data.message);
-            setSuccessful(true);
-          },
-          (error) => {
-            const resMessage =
-              (error.response &&
-                error.response.data &&
-                error.response.data.message) ||
-              error.message ||
-              error.toString();
-  
-            setMessage(resMessage);
-            setSuccessful(false);
+        const newUser = form.current.getValues();
+        authService.register({
+          name: newUser.name,
+          email: newUser.email,
+          user_name: newUser.username,
+          password: newUser.password,
+          c_password: newUser.c_password,
+          gender: 'm'
+        })?.then((res) => {
+          if(!res.status)
+          toast.error(res?.msg[Object.keys(res.msg)?.[0]]?.[0]);
+          else{
+            toast.success(res.msg);
+            navigate("/login");
           }
-        );
+          
+        })
       }
+  
     };
   
 

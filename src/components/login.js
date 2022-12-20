@@ -3,8 +3,11 @@ import { useNavigate } from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import AuthService from "../services/auth.service";
- import {  NavLink } from "react-router-dom";
+import { toast } from 'react-toastify';
+import {  NavLink } from "react-router-dom";
+import { authService } from "../services/auth.service";
+import { useCookies } from "react-cookie";
+import { TOKEN_KEY } from "./utils/base-api/constants";
 
 const required = (value) => {
   if (!value) {
@@ -24,8 +27,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-
-  const navigate = useNavigate();
+  const [_, setCookies] = useCookies();
 
   const onChangeUsername = (e) => {
     const username = e.target.value;
@@ -39,32 +41,21 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
-    setMessage("");
-    setLoading(true);
-
     form.current.validateAll();
-
     if (checkBtn.current.context._errors.length === 0) {
-      AuthService.login(username, password).then(
-        () => {
-          navigate("/register");
-          window.location.reload();
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+      const newUser = form.current.getValues();
 
-          setLoading(false);
-          setMessage(resMessage);
+      authService.login({
+        login: newUser.username,
+        password: newUser.password
+      })?.then((res => {
+        if(!res.status)
+          toast.error(res?.msg);
+        else{
+          toast.success(res.msg);
+          setCookies(TOKEN_KEY, res.user.token);
         }
-      );
-    } else {
-      setLoading(false);
+      })); 
     }
   };
 
